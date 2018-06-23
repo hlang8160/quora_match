@@ -1,6 +1,7 @@
 ## 用机器学习方法 
-- *人工构造特征*
-- **Basic Feature Engineering**  
+*`人工构造特征`*  
+
+**Basic Feature Engineering**  
 
 * Length of question1
 * Length of question2
@@ -9,9 +10,9 @@
 * Character length of question2 without spaces
 * Number of words in question1
 * Number of words in question2
-* Number of common words in question1 and question2
----
-- **The fuzzy features**  
+* Number of common words in question1 and question2  
+
+**The fuzzy features**    
 
 * QRatio
 * WRatio
@@ -20,8 +21,9 @@
 * Partial token sort ratio
 * Token set ratio
 * Token sort ratio
----
-- **word2vec features**  
+
+**word2vec features**  
+
 
 * Word mover distance
 * Normalized word mover distance
@@ -37,15 +39,19 @@
 * Kurtosis of vector for question1
 * Kurtosis of vector for question2
 ---
-* ***A separate set of w2v features consisted of vectors itself.**  
+***A separate set of w2v features consisted of vectors itself.**  
+
 * Word2vec vector for question1
-* Word2vec vector for question2
+* Word2vec vector for question2  
 
-**采用XGBoost模型，得到准取率为0.814**
+
+**采用XGBoost模型，得到准取率为0.814**  
+
 
 ---
 ---
-## 采用深度学习模型
+## 采用深度学习模型  
+
 
 * 不人工构造特征，采用神经网络的方法分别构造问句1和问句2特征，得到6个模型，之后再联合进行训练（相当于match fuction）
 
@@ -72,6 +78,7 @@ model1.add(Embedding(len(word_index) + 1,
 * Embedding 层输入的shape为2D张量  形如（samples，sequence_length）的2D张量 
 
 * Embedding 层输出shape为3D张量 形如(samples, sequence_length, output_dim)的3D张量
+  
 
 * Dense就是常用的全连接层，所实现的运算是output =activation(dot(input, kernel)+bias)。
 
@@ -79,10 +86,9 @@ model1.add(Embedding(len(word_index) + 1,
 * Dropout用在神经网络中隐藏节点中，增加网络单元随机丢弃的几率。在每次batch中，每次训练得到的网络不同
 * 增加网络的多样性，相当于bagging
 * 与bagging 的不同是, 抽取的不同网络是共享参数，并不是完全独立，而bagging是针对不同的抽样数据集分别训练完全独立的网络。
-
-[Is That a Duplicate Quora Question?](https://www.linkedin.com/pulse/duplicate-quora-question-abhishek-thakur)
-
-
-
+  
+  
 * BatchNormalization层
 * 该层在每个batch上将前一层的激活值重新规范化，即使得其输出数据的均值接近0，其标准差接近1。
+  
+  [Is That a Duplicate Quora Question?](https://www.linkedin.com/pulse/duplicate-quora-question-abhishek-thakur)
