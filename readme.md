@@ -1,6 +1,6 @@
 ## 用机器学习方法 
--- 人工构造特征
-* Basic Feature Engineering  
+- *人工构造特征*
+- Basic Feature Engineering  
 
 * Length of question1
 * Length of question2
@@ -11,7 +11,7 @@
 * Number of words in question2
 * Number of common words in question1 and question2
 
-* The fuzzy features  
+- The fuzzy features  
 
 * QRatio
 * WRatio
@@ -21,7 +21,7 @@
 * Token set ratio
 * Token sort ratio
 
-* word2vec features  
+- word2vec features  
 
 * Word mover distance
 * Normalized word mover distance
@@ -42,22 +42,24 @@
 * Word2vec vector for question1
 * Word2vec vector for question2
 
--- 采用XGBoost模型，得到准取率为0.814
+- 采用XGBoost模型，得到准取率为0.814
+
+---
 --- 
 
-#$ 采用深度学习模型
+## 采用深度学习模型
 
 * 不人工构造特征，采用神经网络的方法分别构造问句1和问句2特征，得到6个模型，之后再联合进行训练（相当于match fuction）
 
 * 利用已有的词向量glove.840B.300d.txt,构建深度神经网络架构
->>
+>>>
 model1 = Sequential()
 model1.add(Embedding(len(word_index) + 1,
                      300,
                      weights=[embedding_matrix],
                      input_length=40,
                      trainable=False))
->>
+>>>
 
 * Embedding()参数
 
